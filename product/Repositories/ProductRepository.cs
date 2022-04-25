@@ -18,9 +18,19 @@ public class ProductRepository
     products.Add(beer.Id, beer);
   }
 
-  public Product GetProduct(int Id)
+  public async Task<Product> GetProduct(int Id)
   {
-    return products[Id];
+    Product product = products[Id];
+    product.Quantity = await GetQuantity(Id);
+    return product;
+  }
+
+  static readonly HttpClient client = new HttpClient();
+
+  private async Task<int> GetQuantity(int Id)
+  {
+    String quantity = await client.GetStringAsync($"http://localhost:5236/api/inventory/{Id}");
+    return int.Parse(quantity);
   }
 
 }

@@ -19,8 +19,8 @@ public class ProductController : ControllerBase
   }
 
   [HttpGet("{id}")]
-  public Product Get(int id)
+  public async Task<Product> Get(int id)
   {
-    return _repository.GetProduct(id);
+    return await _repository.GetProduct(id);
   }
 }
