@@ -19,8 +19,8 @@ public class ProductController : ControllerBase
   }
 
   [HttpGet("{id}")]
-  public Product GetProduct(int Id)
+  public Product Get(int id)
   {
-    return _repository.GetProduct(Id);
+    return _repository.GetProduct(id);
   }
 }
