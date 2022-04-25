@@ -1,4 +1,7 @@
-# Kubernetes ConfigMaps
+# Kubernetes ConfigMaps/Secrets
+
+- [x] ConfigMaps
+- [x] Secrets
 
 <img src=".docs/solution.png" width=450>
 
