@@ -37,7 +37,7 @@ public class ProductRepository
 
   private async Task<int> GetQuantity(int Id)
   {
-    string? url = _buildConfig.GetConfig().INVENTORY_URL;
+    string? url = _buildConfig.GetConfig().INV_APP_URL;
     String quantity = await client.GetStringAsync($"{url}/api/inventory/{Id}");
     return int.Parse(quantity);
   }
