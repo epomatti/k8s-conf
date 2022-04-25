@@ -11,7 +11,8 @@ minikube start
 Deploy
 
 ```sh
-kubectl create configmap sys-app-product --from-env-file=config/product.env
+kubectl create configmap prod-app-config --from-env-file=config/prod-app.env
+kubectl create secret generic inv-app-credentials --from-env-file=config/secrets.env
 
 kubectl apply -f kubernetes.yaml
 ```
@@ -26,12 +27,6 @@ Service should be available at:
 ```
 curl http://localhost:30000/api/product/1
 curl http://localhost:30100/api/inventory/1
-```
-
-### Secrets (TODO)
-
-```sh
-kubectl create secret generic sys-app-credentials --from-literal username=bob --from-literal password=bobpwd
 ```
 
 ### Local Development

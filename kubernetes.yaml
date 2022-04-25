@@ -19,11 +19,11 @@ spec:
           ports:
             - containerPort: 80
           env:
-            - name: INVENTORY_URL
+            - name: INV_APP_URL
               valueFrom:
                 configMapKeyRef:
-                  name: sys-app-product
-                  key: INVENTORY_URL
+                  name: prod-app-config
+                  key: INV_APP_URL
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -45,6 +45,17 @@ spec:
           image: epomatti/k8s-config-inventory
           ports:
             - containerPort: 80
+          env:
+            - name: INV_APP_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: inv-app-credentials
+                  key: username
+            - name: INV_APP_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: inv-app-credentials
+                  key: password
 ---
 apiVersion: v1
 kind: Service
