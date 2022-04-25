@@ -1,5 +1,7 @@
 # Kubernetes ConfigMaps
 
+<img src=".docs/solution.png" width=450>
+
 ### Minikube Deployment
 
 Start minikube:
