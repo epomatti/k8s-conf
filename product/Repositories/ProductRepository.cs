@@ -1,4 +1,5 @@
 using product.Models;
+using product.Utils;
 
 namespace product.Repositories;
 
@@ -18,6 +19,13 @@ public class ProductRepository
     products.Add(beer.Id, beer);
   }
 
+  private BuildConfig _buildConfig;
+
+  public ProductRepository(BuildConfig buildConfig)
+  {
+    this._buildConfig = buildConfig;
+  }
+
   public async Task<Product> GetProduct(int Id)
   {
     Product product = products[Id];
@@ -29,7 +37,8 @@ public class ProductRepository
 
   private async Task<int> GetQuantity(int Id)
   {
-    String quantity = await client.GetStringAsync($"http://localhost:5236/api/inventory/{Id}");
+    string? url = _buildConfig.GetConfig().INVENTORY_URL;
+    String quantity = await client.GetStringAsync($"{url}/api/inventory/{Id}");
     return int.Parse(quantity);
   }
 
